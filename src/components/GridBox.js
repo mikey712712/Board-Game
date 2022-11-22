@@ -2,20 +2,17 @@ import { Box, Image } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
 export const GridBox = ({ dataBoxId, dataLineId, tileIds, playerOne, playerTwo }) => {
-	const playerTwoSrcs = ["/pixelassets/enemies/flying_creature/fly_anim_f1.png", "/pixelassets/enemies/flying_creature/fly_anim_f2.png"]
-	const playerOneSrcs = ["/pixelassets/heroes/knight/knight_idle_anim_f0.png", "/pixelassets/heroes/knight/knight_idle_anim_f4.png"]
-
-	const [playerOneSrc, setPlayerOneSrc] = useState(playerOneSrcs[0])
-	const [playerTwoSrc, setPlayerTwoSrc] = useState(playerTwoSrcs[0])
+	const [playerOneSrc, setPlayerOneSrc] = useState(playerOne.imgSrcs[0])
+	const [playerTwoSrc, setPlayerTwoSrc] = useState(playerTwo.imgSrcs[0])
 
 	useEffect(() => {
 		const playerAnimations = () => {
 			setInterval(() => {
-				setPlayerOneSrc(playerOneSrcs[1])
-				setPlayerTwoSrc(playerTwoSrcs[1])
+				setPlayerOneSrc(playerOne.imgSrcs[1])
+				setPlayerTwoSrc(playerTwo.imgSrcs[1])
 				setTimeout(() => {
-					setPlayerOneSrc(playerOneSrcs[0])
-					setPlayerTwoSrc(playerTwoSrcs[0])
+					setPlayerOneSrc(playerOne.imgSrcs[0])
+					setPlayerTwoSrc(playerTwo.imgSrcs[0])
 				}, 500)
 			}, 1000)
 		}
