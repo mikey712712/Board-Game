@@ -35,10 +35,10 @@ export const GridBox = ({ dataBoxId, dataLineId, tileIds, playerOne, playerTwo }
 			data-box-id={dataBoxId}
 			data-line-id={dataLineId}
 		>
-			{playerOne.position[0] === dataLineId && playerOne.position[1] === dataBoxId && (
+			{playerOne.position["y"] === dataLineId && playerOne.position["x"] === dataBoxId && (
 				<Image id="player-one" position={"relative"} transition={"100ms"} src={playerOneSrc} />
 			)}
-			{playerTwo.position[0] === dataLineId && playerTwo.position[1] === dataBoxId && (
+			{playerTwo.position["y"] === dataLineId && playerTwo.position["x"] === dataBoxId && (
 				<Image id="player-two" position={"relative"} transition={"100ms"} src={playerTwoSrc} />
 			)}
 		</Box>

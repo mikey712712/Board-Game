@@ -5,16 +5,16 @@ import { GridBox } from "./GridBox"
 
 export const Game = ({ tileIds }) => {
 	const gridIds = [1, 2, 3, 4, 5, 6, 7, 8]
-	const knightData = { name: "Knight", health: 30, energy: 8, moveEnergy: 2, turnEnergy: 8 }
-	const flyingMonsterData = { name: "Flying Eyeball", health: 30, energy: 0, moveEnergy: 1, turnEnergy: 6 }
+	const knightData = { name: "Knight", health: 30, energy: 8, moveEnergy: 2, turnEnergy: 8, damageMultiplier: 1, attackDiscount: 0 }
+	const flyingMonsterData = { name: "Flying Eyeball", health: 30, energy: 0, moveEnergy: 1, turnEnergy: 6, damageMultiplier: 1, attackDiscount: 0 }
 
-	const [playerOne, setPlayerOne] = useState({ position: [8, 1], ...knightData })
-	const [playerTwo, setPlayerTwo] = useState({ position: [1, 8], ...flyingMonsterData })
+	const [playerOne, setPlayerOne] = useState({ position: { x: 1, y: 8 }, ...knightData })
+	const [playerTwo, setPlayerTwo] = useState({ position: { x: 8, y: 1 }, ...flyingMonsterData })
 
 	const [turn, setTurn] = useState(1)
 	const GridLine = ({ dataLineId }) => {
 		return (
-			<Flex data-line-id={dataLineId}>
+			<Flex>
 				{gridIds.map((id) => (
 					<GridBox key={id} playerOne={playerOne} playerTwo={playerTwo} tileIds={tileIds} dataLineId={dataLineId} dataBoxId={id} />
 				))}
@@ -23,8 +23,8 @@ export const Game = ({ tileIds }) => {
 	}
 
 	return (
-		<Flex flexFlow={"column nowrap"}>
-			<Flex>
+		<Flex w="100vw" flexFlow={"column nowrap"}>
+			<Flex w="100%" justify={"space-between"} boxSizing={"border-box"} p="20px">
 				<Box w="10vw">
 					<Text>{playerOne.name}</Text>
 					<Text>Health: {playerOne.health}</Text>
