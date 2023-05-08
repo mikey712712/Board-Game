@@ -1,8 +1,7 @@
 import { Box, Button, Flex, Grid, Image, Text } from "@chakra-ui/react"
-import { child, onValue, push, ref, remove, set, onChildAdded } from "firebase/database"
+import { push, ref, remove, set, onChildAdded } from "firebase/database"
 import { useEffect, useRef, useState } from "react"
 import { db } from "../App"
-import { characterData } from "./Game"
 
 export const Controls = ({
 	setOnlineRoomId,
@@ -1247,6 +1246,9 @@ export const Controls = ({
 
 	return (
 		<>
+			<Text w="fit-content" textAlign={"center"} fontSize="1em" position={"absolute"} bottom={"10px"} zIndex={"100"} m={"0"} right={"15px"}>
+				Player {turnRef.current}'s turn <br /> {onlineRoomId ? "Room ID:" + onlineRoomId : null}
+			</Text>
 			<Flex
 				position={"absolute"}
 				h={"30vh"}
@@ -1255,16 +1257,13 @@ export const Controls = ({
 				w="100vw"
 				justify={"space-between"}
 				boxSizing="border-box"
-				p="10px"
+				p="20px"
 				bgColor="rgba(119,81,76,0.7)"
 				backdropFilter={"blur(4px)"}
 			>
-				<Text w="25vw" textAlign={"center"} fontSize="1em">
-					Player {turnRef.current}'s turn <br /> {onlineRoomId ? "Room ID:" + onlineRoomId : null}
-				</Text>
 				{(gameMode === "onlinehost" && turnRef.current === 1) || (gameMode === "onlinejoin" && turnRef.current === 2) || gameMode === "local" ? (
 					<>
-						<Grid w="20vw" justifySelf={"center"} gridTemplateRows={"1fr 1fr 1fr"} gridTemplateColumns={"1fr 1fr 1fr"}>
+						<Grid w="20vh" h={"20vh"} justifySelf={"center"} gridTemplateRows={"1fr 1fr 1fr"} gridTemplateColumns={"1fr 1fr 1fr"}>
 							<Button
 								cursor="pointer"
 								boxSizing="border-box"
@@ -1310,7 +1309,7 @@ export const Controls = ({
 								<Image h="50px" transform={"rotate(90deg)"} src="/pixelassets/arrow.png" />
 							</Button>
 						</Grid>
-						<Flex id="#moves" w="47vw" flexFlow="row wrap" gap="10px" justify={"space-between"}>
+						<Flex id="#moves" w="57vw" flexFlow="row wrap" gap="10px" justify={"flex-end"} h={"fit-content"}>
 							{(turnRef.current === 1 && playerOneRef.current.name === "Knight") ||
 							(turnRef.current === 2 && playerTwoRef.current.name === "Knight") ? (
 								<>
@@ -1762,6 +1761,18 @@ export const Controls = ({
 								}
 							>
 								End Turn
+							</Button>
+							<Button
+								cursor={"pointer"}
+								h="40px"
+								w="120px"
+								bgColor={"#4974a5"}
+								onClick={cancelGame}
+								fontWeight="600"
+								fontSize={"1em"}
+								color={"white"}
+							>
+								Leave Game
 							</Button>
 						</Flex>
 					</>

@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import { db } from "../App"
 import { Controls } from "./Controls"
 import { GridBox } from "./GridBox"
-import uniqid from "uniqid"
-import { onChildAdded, onValue, ref, set } from "firebase/database"
+import { onValue, ref, set } from "firebase/database"
 
 export const characterData = {
 	Knight: {
@@ -239,7 +238,7 @@ export const Game = ({ tileIds, setGameMode, gameMode, onlineRoomId, setOnlineRo
 				/>
 			) : (
 				<Flex justify={"center"} alignItems={"center"} position={"absolute"} bottom={"0"} left="0" w="100vw" h="300px" bgColor="rgba(119,81,76,0.7)">
-					<Text>Room ID:{` ${onlineRoomId}`}</Text>
+					<Text>{onlineRoomId ? `Room ID: ${onlineRoomId}` : null}</Text>
 				</Flex>
 			)}
 		</Flex>
